@@ -22,7 +22,7 @@ para seleccionar el mejor diseño para el estado vecino y regrese.
 '''
 
 def hillClimbing(status):
-    convert = {}
+    convert = {} # Este es un diccionario
     length = len(status)
     for col in range(length):
         bestMove = status[col]
