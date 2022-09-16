@@ -6,14 +6,18 @@ Función 1: el parámetro es el estado actual del diseño del tablero, y el nume
 en los ocho conflictos de diseño reina actuales se determina de acuerdo con el diseño.
 '''
 def getNumofConflict(status):
+    print("-----------------------------------------------------------------------------------------------------------------------")
+    print("Analizando conlfictos. Resultados:")
     num = 0
     for i in range(len(status)):
         for j in range(i + 1, len(status)):
             if status[i] == status[j]:
                 num += 1
+                print("Se encontro un conflicto entre "+str(status[i])+" y " + str(status[j]))
             offset = j - i
             if abs(status[i]-status[j]) == offset:
                 num += 1
+                print("Se encontro un conflicto debido a que 'status[i]-status[j] == offset' offset = "+ str(offset))
     return num
 
 '''
@@ -22,17 +26,19 @@ para seleccionar el mejor diseño para el estado vecino y regrese.
 '''
 
 def hillClimbing(status):
+    print("----------------------------------------------------------------------------------------------------------------")
+    print("Inicio de algoritmo hill climbing")
     convert = {} # Este es un diccionario
     length = len(status)
     for col in range(length):
         bestMove = status[col]
         for row in range(length):
-            if status[col] == row:
+            if bestMove == row:
                 continue
             statusCopy = list(status)
             statusCopy[col] = row
             convert[(col, row)] = getNumofConflict(statusCopy)
-    answers = [] #Mejor colecci[on sucesora
+    answers = [] #Mejor coleccion sucesora
     conflictRow = getNumofConflict(status) #Registro actual de conflictos de reina
 
     # Recorre el diccionario que almacena todos los sucesores posibles para encontrar el mejor
@@ -59,7 +65,7 @@ a 0 y repita el conjunto posterior a cada paso hasta que no haya conflicto.
 '''
 
 def queens():
-    status = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] # En el estado inicial, todas las reinas estan en diagonal
+    status = [0, 1, 2, 3, 4, 5, 6, 7] # En el estado inicial, todas las reinas estan en diagonal
 
     '''
     Cuando el numero de conflictos es mayor que 0, el mejor sucesor se resuelve ciclicamente hasta
@@ -74,6 +80,8 @@ def queens():
         
     for s in range(len(status)):
         status[s] += 1
+    
+    print("--------------------------------------------------------------------------------------------------")
     print("The answer is")
     print(status)
 queens()
