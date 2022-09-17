@@ -1,23 +1,18 @@
 import random
-import time
 
 '''
 Función 1: el parámetro es el estado actual del diseño del tablero, y el numero de reinas en
 en los ocho conflictos de diseño reina actuales se determina de acuerdo con el diseño.
 '''
 def getNumofConflict(status):
-    print("-----------------------------------------------------------------------------------------------------------------------")
-    print("Analizando conlfictos. Resultados:")
     num = 0
     for i in range(len(status)):
         for j in range(i + 1, len(status)):
             if status[i] == status[j]:
                 num += 1
-                print("Se encontro un conflicto entre "+str(status[i])+" y " + str(status[j]))
             offset = j - i
             if abs(status[i]-status[j]) == offset:
                 num += 1
-                print("Se encontro un conflicto debido a que 'status[i]-status[j] == offset' offset = "+ str(offset))
     return num
 
 '''
@@ -26,8 +21,6 @@ para seleccionar el mejor diseño para el estado vecino y regrese.
 '''
 
 def hillClimbing(status):
-    print("----------------------------------------------------------------------------------------------------------------")
-    print("Inicio de algoritmo hill climbing")
     convert = {} # Este es un diccionario
     length = len(status)
     for col in range(length):
@@ -75,6 +68,7 @@ def queens():
     while getNumofConflict(status) > 0:
         status = hillClimbing(status)
         #time.sleep(5)
+        print("Solución de nodo")
         print(status)
         print(getNumofConflict(status))
         
