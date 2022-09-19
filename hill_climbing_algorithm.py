@@ -1,5 +1,5 @@
 import random
-
+import time
 '''
 Función 1: el parámetro es el estado actual del diseño del tablero, y el numero de reinas en
 en los ocho conflictos de diseño reina actuales se determina de acuerdo con el diseño.
@@ -78,4 +78,7 @@ def queens():
     print("--------------------------------------------------------------------------------------------------")
     print("The answer is")
     print(status)
+inicio = time.time()
 queens()
+fin = time.time()
+print("Realizado en", (fin - inicio))
